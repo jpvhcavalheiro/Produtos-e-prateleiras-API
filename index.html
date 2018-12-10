@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--por uma navbar 
+    homepage/Add/modify-->
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse bg-dark">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" id="homepage">Homepage</a>
+            </div>
+            <ul class="navbar-nav nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Shelfs<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="addShelfNavItem">Add shelf</a></li>
+                        <li><a href="#" id="searchShelfNavItem">Search for shelf</a></li>
+                        <li><a href="#" id="modifyShelfNavItem">Modify shelf</a></li>
+                        <li><a href="#" id="deleteShelfNavItem">Delete shelf</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="addProductNavItem">Add product</a></li>
+                        <li><a href="#" id="searchProductNavItem">Search for product</a></li>
+                        <li><a href="#" id="modifyProductNavItem">Modify product</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" id="homepageTab">
+        <br>
+        <h1>Product table</h1>
+        <br>
+        <table class="table table-hover" id="tableProducts">
+
+        </table>
+        <br>
+        <h1>Shelves table</h1>
+        <br>
+        <table class="table table-hover" id="tableShelves">
+
+        </table>
+    </div>
+    <div class="container" id="addShelfTab">
+        <div class="text-center">
+            <br><br>
+            <input type="text" id="newCapacityValue" placeholder="Insert shelf capacity"><br><br>
+            <input type="number" id="newRentPrice" placeholder="Insert shelf rent price"><br><br>
+            <input type="text" id="newProductId" placeholder="Insert product id"><br><br>
+            <button type="button" class="btn btn-primary" id="submitNewShelf">Submit new shelf</button>
+        </div>
+    </div>
+
+    <div class="container" id="addProductTab">
+        <div class="text-center"><br><br>
+            <input type="text" id="newDiscountValue" placeholder="Insert discount value"><br><br>
+            <input type="number" id="newIva" placeholder="Insert iva"><br><br>
+            <input type="number" id="newPrice" placeholder="Insert price"><br><br>
+            <button type="button" class="btn btn-primary" id="submitNewProduct">Submit new shelf</button> <br><br>
+        </div>
+    </div>
+    <div class="container" id="searchShelfTab">
+        <div class="text-center"><br><br>
+            <input type="text" id="searchShelfId" placeholder="Insert shelf Id"><br><br>
+            <button type="button" class="btn btn-primary" id="searchShelfIdBtn">Search shelf by Id</button> <br><br>
+            <table class="table table-hover" id="tableSearchShelf">
+
+            </table>
+        </div>
+    </div>
+    <div class="container" id="searchProductTab">
+        <div class="text-center"><br><br>
+            <input type="text" id="searchProductId" placeholder="Insert product Id"><br><br>
+            <button type="button" class="btn btn-primary" id="searchProductIdBtn">Search product by Id</button> <br><br>
+            <table class="table table-hover" id="tableSearchProduct">
+
+            </table>
+        </div>
+    </div>
+    <div class="container" id="modifyShelfTab">
+        <div class="text-center"><br><br>
+            <input type="text" id="shelfIdToModify" placeholder="Insert shelf Id"><br><br>
+            <input type="text" id="shelfCapacityToModify" placeholder="Insert new capacity"><br><br>
+            <input type="number" id="shelfRentPriceToModify" placeholder="Insert new rent price"><br><br>
+            <input type="number" id="shelfProductIdToModify" placeholder="Insert new product id"><br><br>
+            <button type="button" class="btn btn-primary" id="modifyShelfBtn">Modify shelf!</button>
+        </div>
+    </div>
+    <div class="container" id="modifyProductTab">
+        <div class="text-center"><br><br>
+            <input type="text" id="productIdToModify" placeholder="Insert product Id"><br><br>
+            <input type="text" id="productDiscountValueToModify" placeholder="Insert new discountValue"><br><br>
+            <input type="number" id="productIvaToModify" placeholder="Insert new iva"><br><br>
+            <input type="number" id="productPvpToModify" placeholder="Insert new pvp"><br><br>
+            <button type="button" class="btn btn-primary" id="modifyProductBtn">Modify shelf!</button>
+        </div>
+    </div>
+    <div class="container" id="deleteShelfTab">
+        <div class="text-center"><br><br>
+            <input type="text" id="shelfIdToDelete" placeholder="Insert shelf Id"><br><br>
+            <button type="button" class="btn btn-primary" id="deleteShelfBtn">Delete shelf!</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="js/classes.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
