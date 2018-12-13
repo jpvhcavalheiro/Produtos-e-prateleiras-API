@@ -66,10 +66,10 @@ $("#searchShelfNavItem").click(function () {
 });
 $("#searchShelfIdBtn").click(function () {
     $.ajax({
-        url: "https://mcupacademy.herokuapp.com/api/Shelves/" + $("#searchShelfId").val(),
+        url: "http://localhost:8080/StockManagementStates3FloorsEndpoints/api/shelves/seeshelfid/" + $("#searchShelfId").val(),
         type: 'GET',
         success: function (data) {
-            $("#tableSearchShelf").html("<thead><tr><th>Id</th><th>Capacity</th><th>rentPrice</th><th>ProductId</th></tr></thead><tbody><tr><td>" + data.id + "</td><td>" + data.capacity + "</td><td>" + data.rentPrice + "</td><td>" + data.productId + "</td></tr></tbody>")
+            $("#tableSearchShelf").html("<thead><tr><th>Id</th><th>Capacity</th><th>rentPrice</th><th>ProductId</th></tr></thead><tbody><tr><td>" + data.id + "</td><td>" + data.capacity + "</td><td>" + data.rentPrice + "</td><td>" + data.productInShelf + "</td></tr></tbody>")
         }
     })
 });

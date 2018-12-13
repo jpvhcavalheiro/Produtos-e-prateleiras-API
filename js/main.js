@@ -14,24 +14,24 @@ var products = []
 var shelves = []
 function updateHomepage() {
     $.ajax({
-        url: "https://mcupacademy.herokuapp.com/api/Products",
+        url: "http://localhost:8080/StockManagementStates3FloorsEndpoints/api/products/seeall",
         type: 'GET',
         success: function (data) {
             products = data
             $("#tableProducts").html("<thead><tr><th>Id</th><th>discountValue</th><th>iva</th><th>pvp</th></tr></thead><tbody id='tbodyAllProducts'></tbody>")
             for (let i = 0; i < data.length; i++) {
-                $("#tbodyAllProducts").append("<tr><td>" + data[i].id + "</td><td>" + data[i].discountValue + "</td><td>" + data[i].iva + "</td><td>" + data[i].pvp + "</td></tr>")
+                $("#tbodyAllProducts").append("<tr><td>" + data[i].id + "</td><td>" + data[i].discount + "</td><td>" + data[i].iva + "</td><td>" + data[i].pvp + "</td></tr>")
             }
         }
     });
     $.ajax({
-        url: "https://mcupacademy.herokuapp.com/api/Shelves",
+        url: "http://localhost:8080/StockManagementStates3FloorsEndpoints/api/shelves/seeall",
         type: 'GET',
         success: function (data) {
             shelves = data
             $("#tableShelves").html("<thead><tr><th>Id</th><th>Capacity</th><th>rentPrice</th><th>ProductId</th></tr></thead><tbody id='tbodyAllShelves'></tbody>")
             for (let i = 0; i < data.length; i++) {
-                $("#tbodyAllShelves").append("<tr><td>"+data[i].id+"</td><td>" + data[i].capacity + "</td><td>" + data[i].rentPrice + "</td><td>" + data[i].productId + "</td>")
+                $("#tbodyAllShelves").append("<tr><td>"+data[i].id+"</td><td>" + data[i].capacity + "</td><td>" + data[i].rentPrice + "</td><td>" + data[i].productDTOInShelf.id + "</td>")
             }
         }
     });
