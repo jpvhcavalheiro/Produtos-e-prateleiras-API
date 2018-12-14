@@ -31,3 +31,13 @@ class ShelfWithId {
         this.id=id
     }
 };
+class ProductWithId {
+    constructor(discount, iva, pvp,id,shelvesList=[]) {
+        this.discount = discount
+        this.iva = iva
+        this.pvp = pvp
+        this.id=id
+        this.shelvesList=shelvesList
+    }
+    
+}

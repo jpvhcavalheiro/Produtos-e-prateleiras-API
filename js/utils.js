@@ -98,12 +98,15 @@ $("#searchProductNavItem").click(function () {
     $("#modifyProductTab").hide();
     $("#deleteShelfTab").hide();
 })
-$("#searchProductTab").click(function () {
+$("#searchProductIdBtn").click(function () {
+    if($("#searchProductId").val()>10){
+        console.log("Funciona")
+    }
     $.ajax({
-        url: "http://localhost:8080/StockManagementStates3FloorsEndpoints/api/Products/" + $("#searchProductId").val(),
+        url: "http://localhost:8080/StockManagementStates3FloorsEndpoints/api/products/seeproductid/" + $("#searchProductId").val(),
         type: 'GET',
         success: function (data) {
-            $("#tableSearchProduct").html("<thead><tr><th>Id</th><th>discountValue</th><th>iva</th><th>pvp</th></tr></thead><tbody><tr><td>" + data.id + "</td><td>" + data.discountValue + "</td><td>" + data.iva + "</td><td>" + data.pvp + "</td></tr></tbody>")
+            $("#tableSearchProduct").html("<thead><tr><th>Id</th><th>discountValue</th><th>iva</th><th>pvp</th></tr></thead><tbody><tr><td>" + data.id + "</td><td>" + data.discount + "</td><td>" + data.iva + "</td><td>" + data.pvp + "</td></tr></tbody>")
         }
     })
 })
@@ -151,10 +154,12 @@ $("#modifyProductNavItem").click(function () {
 
 })
 $("#modifyProductBtn").click(function () {
-    var modifiedProduct = new Product($("#productDiscountValueToModify").val(), $("#productIvaToModify").val(), $("#productPvpToModify").val())
-    console.log("https://mcupacademy.herokuapp.com/api/Products/" + $("#productIdToModify").val())
+    console.log("ola")
+    var modifiedProduct = new ProductWithId($("#productDiscountValueToModify").val(), $("#productIvaToModify").val(), $("#productPvpToModify").val(),$("#productIdToModify").val())
+    console.log("ola2")
+    console.log(modifiedProduct)
     $.ajax({
-        url: "https://mcupacademy.herokuapp.com/api/Products/" + $("#productIdToModify").val(),
+        url: "http://localhost:8080/StockManagementStates3FloorsEndpoints/api/Products/",
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(modifiedProduct),
