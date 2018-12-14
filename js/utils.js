@@ -1,5 +1,9 @@
+$("#updateHomePageButton").click(function(){
+    updateHomepage();
+});
+
 $("#homepage").click(function () {
-    $("#homepageTab").show()
+    $("#homepageTab").show();
     $("#addShelfTab").hide();
     $("#addProductTab").hide();
     $("#searchShelfTab").hide();
@@ -10,7 +14,7 @@ $("#homepage").click(function () {
 
 });
 $("#addShelfNavItem").click(function () {
-    $("#homepageTab").hide()
+    $("#homepageTab").hide();
     $("#addShelfTab").show();
     $("#addProductTab").hide();
     $("#searchShelfTab").hide();
@@ -21,13 +25,15 @@ $("#addShelfNavItem").click(function () {
 
 });
 $("#submitNewShelf").click(function () {
-    var newShelf = new Shelf($("#newCapacityValue").val(), $("#newRentPrice").val(), $("#newProductId").val());
+    var productInThisShelf = new ProductInShelf($("#newProductId").val())
+    var newShelf = new Shelf($("#newCapacityValue").val(), $("#newRentPrice").val(), productInThisShelf);
     $.ajax({
-        url: "https://mcupacademy.herokuapp.com/api/Shelves",
+        url: "http://localhost:8080/StockManagementStates3FloorsEndpoints/api/shelves",
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(newShelf),
         success: function (data) {
+            updateHomepage()
         }
     })
 });
@@ -45,11 +51,20 @@ $("#addProductNavItem").click(function () {
 $("#submitNewProduct").click(function () {
     var newProduct = new Product($("#newDiscountValue").val(), $("#newIva").val(), $("#newPrice").val())
     $.ajax({
-        url: "https://mcupacademy.herokuapp.com/api/Products",
+        url: "http://localhost:8080/StockManagementStates3FloorsEndpoints/api/products/",
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(newProduct),
         success: function (data) {
+            updateHomepage();
+            $("#homepageTab").show();
+            $("#addShelfTab").hide();
+            $("#addProductTab").hide();
+            $("#searchShelfTab").hide();
+            $("#searchProductTab").hide();
+            $("#modifyShelfTab").hide();
+            $("#modifyProductTab").hide();
+            $("#deleteShelfTab").hide();   
         }
     })
 });
@@ -85,7 +100,7 @@ $("#searchProductNavItem").click(function () {
 })
 $("#searchProductTab").click(function () {
     $.ajax({
-        url: "https://mcupacademy.herokuapp.com/api/Products/" + $("#searchProductId").val(),
+        url: "http://localhost:8080/StockManagementStates3FloorsEndpoints/api/Products/" + $("#searchProductId").val(),
         type: 'GET',
         success: function (data) {
             $("#tableSearchProduct").html("<thead><tr><th>Id</th><th>discountValue</th><th>iva</th><th>pvp</th></tr></thead><tbody><tr><td>" + data.id + "</td><td>" + data.discountValue + "</td><td>" + data.iva + "</td><td>" + data.pvp + "</td></tr></tbody>")
@@ -105,15 +120,21 @@ $("#modifyShelfNavItem").click(function () {
 })
 
 $("#modifyShelfBtn").click(function () {
-    console.log("ola")
-    var modifiedShelf = new Shelf($("#shelfCapacityToModify").val(), $("#shelfRentPriceToModify").val(), $("#shelfProductIdToModify").val())
+    var modifiedShelf;
+    if($("#shelfProductIdToModify").val()!=""){
+        var modifiedProductInShelf=new Product($("#shelfProductIdToModify").val())
+        modifiedShelf = new ShelfWithId($("#shelfCapacityToModify").val(), $("#shelfRentPriceToModify").val(), modifiedProductInShelf,$("#shelfIdToModify").val())
+    } else{
+        modifiedShelf = new ShelfWithId($("#shelfCapacityToModify").val(), $("#shelfRentPriceToModify").val(), null,$("#shelfIdToModify").val())
+    }
+    console.log(modifiedShelf)
+    
     $.ajax({
-        url: "https://mcupacademy.herokuapp.com/api/Shelves/" + $("#shelfIdToModify").val(),
+        url: "http://localhost:8080/StockManagementStates3FloorsEndpoints/api/shelves/",
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(modifiedShelf),
         success: function (data) {
-            console.log(data)
         }
 
     })
@@ -163,6 +184,8 @@ $("#deleteShelfBtn").click(function () {
         }
     })
 })
+
+
 
 
 

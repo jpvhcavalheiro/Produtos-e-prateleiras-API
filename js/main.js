@@ -31,7 +31,12 @@ function updateHomepage() {
             shelves = data
             $("#tableShelves").html("<thead><tr><th>Id</th><th>Capacity</th><th>rentPrice</th><th>ProductId</th></tr></thead><tbody id='tbodyAllShelves'></tbody>")
             for (let i = 0; i < data.length; i++) {
-                $("#tbodyAllShelves").append("<tr><td>"+data[i].id+"</td><td>" + data[i].capacity + "</td><td>" + data[i].rentPrice + "</td><td>" + data[i].productDTOInShelf.id + "</td>")
+                if(data[i].productDTOInShelf!=null){
+                    $("#tbodyAllShelves").append("<tr><td>"+data[i].id+"</td><td>" + data[i].capacity + "</td><td>" + data[i].rentPrice + "</td><td>" + data[i].productDTOInShelf.id + "</td>")
+                } else{
+                    $("#tbodyAllShelves").append("<tr><td>"+data[i].id+"</td><td>" + data[i].capacity + "</td><td>" + data[i].rentPrice + "</td><td>" + null + "</td>")
+                }
+                
             }
         }
     });
